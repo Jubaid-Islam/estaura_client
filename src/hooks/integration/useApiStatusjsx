@@ -1,0 +1,18 @@
+import { useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext'
+import { useQuery } from '@tanstack/react-query'
+import { getApiStatus } from '../../api/integrationApi'
+import useAxiosSecure from '../../axios/useAxiosSecure'
+
+export default function useApiStatus() {
+    const axiosSecure = useAxiosSecure()
+    const { loading = true } = useContext(AuthContext) || {}
+    return useQuery({
+        queryKey: ["api-status"],
+        queryFn: () => getApiStatus(axiosSecure),
+        enabled: !loading,
+
+    })
+}
+
+

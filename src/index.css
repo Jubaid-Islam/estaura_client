@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@import 'tailwindcss';
+@plugin "daisyui";
+
+
+
+.dm-sans {
+  font-family: 'DM Sans', sans-serif;
+}
+
+
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+
+.animate-shine {
+  animation: shine 3s linear infinite;
+}
+
+.btn {
+  background: linear-gradient(to right, #2148e3, #6a89ef);
+}
+
+*{
+  scroll-behavior: smooth;
+}
+
+/* https://69b273bbe06ef68ddd95276b.mockapi.io/users */
+
