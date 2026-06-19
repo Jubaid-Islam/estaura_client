@@ -72,7 +72,7 @@ const FeaturedRent = () => {
     });
   };
 
-  // Set up scroll event listener and card width recalculation
+  // Set up scroll event listener and card width 
   useEffect(() => {
     const container = scrollRef.current;
     if (container) {
