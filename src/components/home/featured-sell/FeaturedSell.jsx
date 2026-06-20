@@ -158,7 +158,7 @@ const FeaturedSell = () => {
               </section>
 
             {/* Trust Metrics */}
-            <div className="flex flex-wrap gap-6 pt-2 border-t border-gray-100">
+            <div className="flex items-center justify-center lg:justify-start gap-6 pt-4 border-t border-gray-100">
               {stats.map((stat, idx) => (
                 <div key={idx} className="flex items-center gap-2">
                   <div className="text-indigo-500 bg-indigo-50 p-1.5 rounded-full">{stat.icon}</div>
@@ -171,7 +171,7 @@ const FeaturedSell = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex items-center justify-center md:justify-start flex-row gap-4 pt-4">
+            <div className="flex items-center justify-center lg:justify-start flex-row gap-4 pt-4">
               <NavLink
                 to="/sell"
                 className="inline-flex items-center justify-center gap-2 bg-indigo-600/90 text-white px-4  md:px-8 py-4 rounded-xl font-bold text-xs hover:bg-indigo-700/90 transition-all shadow-xl shadow-indigo-50 hover:shadow-indigo-100 hover:-translate-y-0.5 active:translate-y-0 group"
@@ -181,7 +181,7 @@ const FeaturedSell = () => {
               </NavLink>
               <NavLink
                 to="/learn-more"
-                className="inline-flex items-center justify-center px-4 md:px-8 py-4 rounded-xl text-xs font-bold text-gray-700 border-2 border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 transition-all group"
+                className="inline-flex items-center justify-center px-4 md:px-8 py-4 rounded-xl text-xs font-bold text-gray-700 border-2 border-gray-200 hover:bg-indigo-50 transition-all group"
               >
                 Learn More
                 <ArrowRight

@@ -17,18 +17,6 @@ import { cloudinaryUrl } from "../../hooks/cloudniaryUrl";
 import PropertyMap from "./PropertyMap";
 import DetailsSkeleton from "../loading/DetailsSkeleton";
 
-const DEAL_STATUS_BANNER = {
-  negotiating: {
-    icon: <MessageCircle size={15} />,
-    message: "This property is currently under negotiation.",
-    color: "bg-yellow-50 text-yellow-700",
-  },
-  deal_closed: {
-    icon: <Ban size={15} />,
-    message: "This property is no longer available. The deal has been closed.",
-    color: "bg-red-50 text-red-500",
-  },
-};
 
 const PropertyDetails = () => {
   const navigate = useNavigate();
@@ -54,8 +42,6 @@ const PropertyDetails = () => {
   const agentInitials = agentName
     ? agentName.split(" ").map(w => w[0]).join("").toUpperCase().slice(0, 2)
     : "?";
-
-  const dealBanner = DEAL_STATUS_BANNER[property?.dealStatus] || null;
 
   // check existing conversation
   const { data: existingConv } = useQuery({
@@ -138,28 +124,21 @@ const PropertyDetails = () => {
         <div className="flex items-center justify-between mb-6 mt-20">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-sm font-bold text-gray-600 hover:text-indigo-600 transition-colors group"
+            className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors group"
           >
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            Back to listing
+            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+            Back
           </button>
           <div className="flex gap-3">
-            <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-gray-200 hover:bg-gray-50 transition text-sm">
-              <Heart size={16} className="text-gray-500" /> Save
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-gray-200 hover:bg-gray-50 transition text-sm">
-              <Share2 size={16} className="text-gray-500" /> Share
+            <button className="flex items-center gap-2 px-4 py-1.5 font-medium rounded-xl bg-indigo-50 text-indigo-700  hover:bg-gray-50 transition text-sm">
+              {property.featured && (
+                <span>
+                  Featured
+                </span>
+              )}
             </button>
           </div>
         </div>
-
-        {/* Deal Status Banner */}
-        {dealBanner && (
-          <div className={`flex items-center gap-2.5 px-4 py-3 rounded-xl mb-6 text-sm font-medium ${dealBanner.color}`}>
-            {dealBanner.icon}
-            {dealBanner.message}
-          </div>
-        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
@@ -174,17 +153,17 @@ const PropertyDetails = () => {
                   alt={property.title}
                   className={`w-full h-full object-cover ${property.dealStatus === "deal_closed" ? "grayscale opacity-80" : ""}`}
                 />
-                <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase ${property.listingType === "rent" ? "bg-blue-600 text-white" : "bg-emerald-600 text-white"
+                <span className={`absolute top-4 left-4 px-3 py-1 rounded-md text-xs font-bold uppercase ${property.listingType === "rent" ? "bg-blue-600 text-white" : "bg-emerald-600 text-white"
                   }`}>
                   {property.listingType}
                 </span>
                 {property.dealStatus === "deal_closed" && (
-                  <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold uppercase bg-red-500/90 text-white">
+                  <span className="absolute top-4 right-4 px-3 py-1 rounded-md text-xs font-bold uppercase bg-emerald-700/90 text-white">
                     Closed
                   </span>
                 )}
                 {property.dealStatus === "negotiating" && (
-                  <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold uppercase bg-yellow-600 text-white">
+                  <span className="absolute top-4 right-4 px-3 py-1 rounded-md text-xs font-bold uppercase bg-yellow-600 text-white">
                     Under Negotiation
                   </span>
                 )}
@@ -274,9 +253,9 @@ const PropertyDetails = () => {
                 {activeTab === "overview" && (
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { title: "Bedrooms", lines: [`Total: ${property.bedrooms}`, `Main level: ${property.bedrooms}`] },
-                      { title: "Bathrooms", lines: [`Total: ${property.bathrooms}`, `Full baths: ${property.bathrooms}`] },
-                      { title: "Other rooms", lines: ["Living room", "Bonus room"] },
+                      { title: "Bedrooms", lines: [`Total: ${property.bedrooms}`] },
+                      { title: "Bathrooms", lines: [`Total: ${property.bathrooms}`] },
+                      { title: "Others", lines: ["Living room"] },
                     ].map((item, i) => (
                       <div key={i} className="bg-gray-50 rounded-xl p-4">
                         <p className="font-semibold text-gray-800 text-sm mb-2">{item.title}</p>

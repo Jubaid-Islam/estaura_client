@@ -82,9 +82,9 @@ const JoinAgent = () => {
         <div className="border-b border-gray-100 md:py-14 py-1 px-6 text-center max-w-5xl mx-auto">
           <button
             onClick={() => navigate(-1)}
-            className="flex justify-start items-center gap-2 font-bold text-sm text-gray-400 hover:text-indigo-600 transition group mb-10 mt-4"
+            className="flex justify-start items-center gap-2 font-medium text-sm text-gray-600 hover:text-indigo-600 transition group mb-10 mt-4"
           >
-            <ArrowLeft size={15} className="group-hover:-translate-x-0.5 transition-transform" />
+            <ArrowLeft size={13} className="group-hover:-translate-x-0.5 transition-transform" />
             Back
           </button>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">

@@ -91,7 +91,7 @@ const AgentList = () => {
   }
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen dm-sans">
+    <div className="py-4 md:p-6 lg:p-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen dm-sans">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}

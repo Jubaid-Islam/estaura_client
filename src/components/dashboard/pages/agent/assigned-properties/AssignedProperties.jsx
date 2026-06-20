@@ -168,7 +168,7 @@ const AssignedProperties = () => {
 
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen dm-sans">
+    <div className="py-4 md:p-6 lg:p-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen dm-sans">
 
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
@@ -599,34 +599,11 @@ const AssignedProperties = () => {
               </div>
 
               <div>
-                <h4 className="text-sm font-bold text-gray-700 uppercase tracking-wide mb-2">Description</h4>
-                <p className="text-gray-600 leading-relaxed">{selectedProperty.description}</p>
+                <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Description</h4>
+                <p className="text-gray-600 leading-relaxed text-xs">{selectedProperty.description}</p>
               </div>
 
-              {/* Modal Actions */}
-              <div className="flex flex-wrap gap-3 pt-2 border-t border-gray-100">
-                {selectedProperty.status === 'closed' ? (
-                  <button
-                    onClick={() => handleMarkActive(selectedProperty._id)}
-                    className="flex items-center gap-2 px-5 py-2.5 bg-indigo-100 hover:bg-indigo-600 text-indigo-600 hover:text-white border border-indigo-100 rounded-xl text-sm font-semibold transition"
-                  >
-                    <CheckCircle size={15} /> Mark Active
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => handleMarkClosed(selectedProperty._id)}
-                    className="flex items-center gap-2 px-5 py-2.5 border border-red-100 text-red-600 bg-red-50 hover:bg-red-500 hover:text-white rounded-xl text-sm font-semibold transition"
-                  >
-                    <XCircle size={15} /> Close Deal
-                  </button>
-                )}
-                <button
-                  onClick={() => handleDelete(selectedProperty._id)}
-                  className="flex items-center gap-2 px-5 py-2.5 border border-gray-200 text-gray-500 hover:bg-red-50 hover:text-red-500 hover:border-red-100 rounded-xl text-sm font-semibold transition ml-auto"
-                >
-                  <Trash2 size={15} /> Delete
-                </button>
-              </div>
+         
             </div>
           </div>
         </div>

@@ -391,11 +391,17 @@ const BuyCard = () => {
                   <span className="px-3 py-1 bg-emerald-700/90 text-white text-[10px] font-bold rounded-md uppercase">
                     Buy
                   </span>
-                  {property.featured && (
-                    <span className="px-3 py-1 bg-indigo-500 text-white text-[10px] font-bold rounded-md uppercase">
-                      Featured
-                    </span>
-                  )}
+                
+               {property.dealStatus === "deal_closed" && (
+                  <span className="px-3 py-1 rounded-md text-[10px] font-bold uppercase bg-emerald-700/90 text-white">
+                    Closed
+                  </span>
+                )}
+                {property.dealStatus === "negotiating" && (
+                  <span className="px-3 py-1 rounded-md text-[10px] font-bold uppercase bg-yellow-600 text-white">
+                    Negotiation
+                  </span>
+                )}
                 </div>
               </div>
               <div className="py-5 px-4">
@@ -418,7 +424,7 @@ const BuyCard = () => {
                       <Maximize size={16} className="text-gray-400" /> {property.sqft}
                     </div>
                   </div>
-                  <div className="text-rose-500 font-bold text-lg">
+                  <div className="text-indigo-500 font-bold text-lg">
                     ${property.price}
                   </div>
                 </div>

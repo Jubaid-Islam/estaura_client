@@ -115,16 +115,16 @@ const PendingProperties = () => {
   );
 
   return (
-    <div className="p-4 md:p-8 bg-gray-50 min-h-screen">
+    <div className="py-4 md:p-8 bg-gray-50 min-h-screen">
       <div className="max-w-5xl mx-auto">
 
         {/* Back */}
         <NavLink
          to="/dashboard/property-list"
-          className="flex items-center gap-2 text-sm text-gray-700 hover:text-indigo-700 transition group mb-6"
+          className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-indigo-700 transition group mb-6"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
-         Go Back
+        Back
         </NavLink>
 
         {/* Header */}

@@ -63,7 +63,7 @@ export default function TopratedAgent() {
         {/* Back */}
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-sm text-gray-400 hover:text-purple-700 transition group mb-6"
+          className="flex items-center gap-2 font-medium text-sm text-gray-600 hover:text-indigo-600 transition group mb-6"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
           Back

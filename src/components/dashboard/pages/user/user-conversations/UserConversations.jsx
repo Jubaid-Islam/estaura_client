@@ -70,15 +70,15 @@ const UserConversations = () => {
   }
 
   return (
-    <div className="p-4 bg-gradient-to-br from-gray-50 to-gray-100  dm-sans">
+    <div className="py-5 bg-gradient-to-br from-gray-50 to-gray-100  dm-sans">
 
-      <div className="py-4">
+      <div className="pb-5">
         {showChat && (
           <button
             onClick={() => setShowChat(false)}
-            className="md:hidden flex items-center gap-1.5 px-1 py-0.4  border-b border-gray-100 text-xs text-gray-500 hover:text-indigo-600 transition"
+            className="md:hidden flex items-center gap-1.5 px-1 py-0.4 text-sm text-gray-600 hover:text-indigo-600 transition"
           >
-            <ArrowLeft size={13} /> Back to list
+            <ArrowLeft size={13} /> Back
           </button>
         )}
       </div>

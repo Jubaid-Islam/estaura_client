@@ -132,7 +132,7 @@ const Transactions = () => {
   }
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 min-h-screen bg-gray-50 dm-sans">
+    <div className="py-4 md:p-6 lg:p-8 min-h-screen bg-gray-50 dm-sans">
       <div className="max-w-5xl mx-auto">
 
        

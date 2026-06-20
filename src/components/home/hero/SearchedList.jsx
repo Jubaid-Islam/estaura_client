@@ -77,17 +77,17 @@ const SearchedList = () => {
   }
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen dm-sans mt-25">
+    <div className="p-4 md:p-6 lg:p-8 bg-gray-50 min-h-screen dm-sans ">
       <div className="max-w-6xl mx-auto">
 
         {/* Back, count */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-6 mt-25">
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-2 text-sm text-gray-500 hover:text-indigo-600 transition group"
+            className="flex items-center gap-2 text-sm text-gray-600 hover:text-indigo-600 transition group"
           >
             <ArrowLeft size={15} className="group-hover:-translate-x-0.5 transition-transform" />
-            Back home
+            Back
           </button>
           {!isError && (
             <p className="text-sm text-gray-400">

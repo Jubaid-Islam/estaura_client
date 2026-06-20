@@ -172,22 +172,21 @@ const EditProperty = () => {
   }
 
   return (
-    <div className="dm-sans max-w-5xl mx-auto mt-20 px-4 py-8 md:py-12">
+    <div className="dm-sans max-w-5xl mx-auto mt-15 px-5 py-8 md:py-12">
       {/* Header */}
-      <div className="mb-8 flex justify-between">
+      <div className='items-center flex mb-7'>
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors group"
+        >
+          <ArrowLeft size={15} className="group-hover:-translate-x-1 transition-transform" />
+          Back
+        </button>
+      </div>
+      <div className="mb-8">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Edit Property</h1>
           <p className="text-gray-500 mt-1">Update the details of your listing</p>
-        </div>
-
-        <div className='items-center flex'>
-          <button
-            onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-indigo-600 transition-colors group"
-          >
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            Go Back
-          </button>
         </div>
       </div>
 

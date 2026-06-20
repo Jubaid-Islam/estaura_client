@@ -167,9 +167,14 @@ const FeaturedBuy = () => {
                 />
                 <div className="absolute top-4 left-4 flex gap-2">
                   <span className="px-2 py-0.5 md:px-3 md:py-1 bg-emerald-700 text-white text-[8px] md:text-[10px] font-bold rounded-md uppercase tracking-wider"> Buy</span>
-                  {property.featured && (
-                    <span className="px-2 py-0.5 md:px-3 md:py-1 bg-indigo-500 text-white text-[8px] md:text-[10px] font-bold rounded-md uppercase tracking-wider">Featured</span>
+
+                  {property.dealStatus === "deal_closed" && (
+                    <span className="px-2 py-0.5 md:px-3 md:py-1 bg-emerald-700/90 text-white text-[8px] md:text-[10px] font-bold rounded-md uppercase tracking-wider">Closed</span>
                   )}
+                  {property.dealStatus === "negotiating" &&(
+                    <span className="px-2 py-0.5 md:px-3 md:py-1 bg-yellow-600 text-white text-[8px] md:text-[10px] font-bold rounded-md uppercase tracking-wider"> Negotiation</span>
+                  )}
+
                 </div>
               </div>
 
@@ -193,7 +198,7 @@ const FeaturedBuy = () => {
                       <Maximize size={16} className="text-gray-400" /> {property.sqft}
                     </div>
                   </div>
-                  <div className="text-rose-500 font-bold text-[12px]">
+                  <div className="text-indigo-600 font-bold text-[12px]">
                     {property.price}<span className="text-[10px] text-gray-400 font-normal"> /month</span>
                   </div>
                 </div>

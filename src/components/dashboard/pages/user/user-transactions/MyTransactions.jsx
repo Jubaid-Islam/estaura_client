@@ -50,7 +50,7 @@ const MyTransactions = () => {
   }
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dm-sans">
+    <div className="py-4 md:p-6 lg:p-8 min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dm-sans">
       <div className="max-w-5xl mx-auto">
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between w-full gap-4 mb-6">

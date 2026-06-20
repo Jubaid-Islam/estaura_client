@@ -150,14 +150,14 @@ const AddProperty = () => {
   };
 
   return (
-    <div className="dm-sans p-4 md:p-6 lg:p-8">
+    <div className="dm-sans py-4 md:p-6 lg:p-8">
       <div className='mb-7'>
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-indigo-600 transition-colors group"
+          className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors group"
         >
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          Go Back
+          <ArrowLeft size={15} className="group-hover:-translate-x-1 transition-transform" />
+          Back
         </button>
       </div>
       {/* Header */}

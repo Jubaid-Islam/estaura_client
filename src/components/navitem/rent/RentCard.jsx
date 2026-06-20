@@ -379,7 +379,7 @@ const RentCard = () => {
               <div className="relative h-64 overflow-hidden">
                 <img
                   src={cloudinaryUrl(property.images?.[0], { width: 400 })}
-          
+
                   className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-200"
                   alt={property.title}
                 />
@@ -387,9 +387,14 @@ const RentCard = () => {
                   <span className="px-3 py-1 bg-blue-600 text-white text-[10px] font-bold rounded-md uppercase">
                     Rent
                   </span>
-                  {property.featured && (
-                    <span className="px-3 py-1 bg-indigo-500 text-white text-[10px] font-bold rounded-md uppercase">
-                      Featured
+                  {property.dealStatus === "deal_closed" && (
+                    <span className="px-3 py-1 rounded-md text-[10px] font-bold uppercase bg-emerald-700/90 text-white">
+                      Closed
+                    </span>
+                  )}
+                  {property.dealStatus === "negotiating" && (
+                    <span className="px-3 py-1 rounded-md text-[10px] font-bold uppercase bg-yellow-600 text-white">
+                      Negotiation
                     </span>
                   )}
                 </div>
@@ -414,7 +419,7 @@ const RentCard = () => {
                       <Maximize size={16} className="text-gray-400" /> {property.sqft}
                     </div>
                   </div>
-                  <div className="text-rose-500 font-bold text-lg">
+                  <div className="text-indigo-600 font-bold text-lg">
                     ${property.price}
                     <span className="text-xs text-gray-400 font-normal">/month</span>
                   </div>

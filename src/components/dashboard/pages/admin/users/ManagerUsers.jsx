@@ -96,7 +96,7 @@ export default function ManagerUsers() {
   );
 
   return (
-    <div className="p-4 md:p-8 bg-gray-50 min-h-screen">
+    <div className="py-4 md:p-8 bg-gray-50 min-h-screen">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}

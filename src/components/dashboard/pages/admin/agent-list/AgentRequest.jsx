@@ -101,13 +101,13 @@ const AgentRequest = () => {
   }
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen dm-sans">
+    <div className="py-4 md:p-6 lg:p-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen dm-sans">
       <div className="max-w-5xl mx-auto">
 
         {/* Back */}
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-sm text-gray-700 hover:text-indigo-600 transition group mb-6"
+          className="flex items-center gap-2 text-sm text-gray-600 font-medium hover:text-indigo-600 transition group mb-6"
         >
           <ArrowLeft size={15} className="group-hover:-translate-x-0.5 transition-transform" />
           Back

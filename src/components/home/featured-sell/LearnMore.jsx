@@ -113,15 +113,15 @@ const LearnMore = () => {
 
       {/* Hero */}
       <div className="bg-white">
-      <div className=" border-b border-gray-100 py-4 md:py-12 px-10 text-center max-w-7xl mx-auto">
+      <div className="border-b border-gray-100 p-4 md:py-12 md:px-10 text-center max-w-7xl mx-auto">
 
         {/* Back */}
         <button
           onClick={() => navigate(-1)}
-          className="flex justify-start items-center gap-2 font-medium text-sm text-gray-500 hover:text-indigo-600 transition group mb-16 mt-2"
+          className="flex justify-start items-center gap-2 font-medium text-sm text-gray-700 hover:text-indigo-600 transition group mb-16 mt-2"
         >
           <ArrowLeft size={15} className="group-hover:-translate-x-0.5 transition-transform" />
-          Go Back
+          Back
         </button>
 
 
