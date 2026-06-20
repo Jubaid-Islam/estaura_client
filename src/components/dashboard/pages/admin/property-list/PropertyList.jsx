@@ -170,7 +170,7 @@ const PropertyList = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
         <div>
-          <div className="flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-3">
             <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
               Property Management
             </h1>
@@ -183,7 +183,7 @@ const PropertyList = () => {
               <RotateCw size={18} className={`${isRefreshing ? 'animate-spin text-indigo-600' : ''}`} />
             </button>
           </div>
-          <p className="text-gray-500 mt-1">Manage all your real estate listings in one place</p>
+          <p className="text-gray-500 mt-1">Manage all your real estate listings.</p>
         </div>
         <div className="relative w-full md:w-96">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />

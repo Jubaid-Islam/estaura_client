@@ -93,7 +93,7 @@ const AgentDashboard = () => {
 
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+        <h1 className="hidden md:block text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
           Agent Dashboard
         </h1>
         <p className="text-gray-500 text-sm mt-1">

@@ -17,6 +17,7 @@ const FeaturedBuy = () => {
   const indexBuyProperties = buyProperties.slice(0, buyProperties.length - 2);
 
 
+
   // Function to calculate card width 
   const getCardTotalWidth = useCallback(() => {
     if (scrollRef.current) {
@@ -100,22 +101,22 @@ const FeaturedBuy = () => {
   }, [buyProperties.length, updateActiveIndex]);
 
   return (
-    <section className="dm-sans py-16 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+    <section className="dm-sans py-10 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
       {/* Header Section */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex-1 text-left">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Find your next home to <span className='text-indigo-600'>Buy</span></h2>
+          <h2 className="text-xl md:text-4xl font-bold text-gray-900 mb-2">Find your next home to <span className='text-indigo-600'>Buy</span></h2>
 
           <div className="flex items-center justify-between mt-4">
-            <p className="text-gray-500">Latest Properties Available for Sale</p>
+            <p className="text-gray-500 text-xs md:text-xl">Latest Properties Available for Sale</p>
 
             {/* View All NavLink */}
             <NavLink
               to="/buy"
-              className="md:hidden flex items-center gap-2 text-sm font-bold text-gray-800 hover:text-indigo-600 transition-colors group"
+              className="md:hidden flex items-center gap-2 text-xs font-bold text-gray-800 hover:text-indigo-600 transition-colors group"
             >
-              View All 
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              View All
+              <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
             </NavLink>
           </div>
         </div>
@@ -139,22 +140,25 @@ const FeaturedBuy = () => {
 
       </div>
 
-      {/* Property Slider / Container */}
       <div
         ref={scrollRef}
-        className="overflow-x-auto gap-6 flex pb-8 no-scrollbar touch-pan-x snap-x snap-mandatory"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        className="overflow-x-auto overflow-y-hidden flex gap-6 pb-8 no-scrollbar snap-x snap-mandatory"
+        style={{
+          WebkitOverflowScrolling: "touch",
+        }}
       >
+
         {buyProperties.map((property, idx) => (
           <div
             onClick={() => navigate(`/property/${property._id}`)}
             key={idx}
-            className="property-card min-w-[300px] md:min-w-[390px] flex-1 snap-start group"
+            className="property-card min-w-[200px] md:min-w-[390px] flex-1 snap-start group"
           >
+
             {/* Card Content */}
             <div className="bg-white rounded-2xl overflow-hidden transition-all duration-300">
               {/* Image Area */}
-              <div className="relative h-56 overflow-hidden rounded-2xl">
+              <div className="relative h-35 md:h-56  overflow-hidden">
                 <img
                   src={cloudinaryUrl(property.images?.[0], { width: 400 })}
                   // loading="lazy"
@@ -162,35 +166,35 @@ const FeaturedBuy = () => {
                   alt={property.title}
                 />
                 <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="px-3 py-1 bg-emerald-700 text-white text-[10px] font-bold rounded-md uppercase tracking-wider"> Buy</span>
+                  <span className="px-2 py-0.5 md:px-3 md:py-1 bg-emerald-700 text-white text-[8px] md:text-[10px] font-bold rounded-md uppercase tracking-wider"> Buy</span>
                   {property.featured && (
-                    <span className="px-3 py-1 bg-indigo-500 text-white text-[10px] font-bold rounded-md uppercase tracking-wider">Featured</span>
+                    <span className="px-2 py-0.5 md:px-3 md:py-1 bg-indigo-500 text-white text-[8px] md:text-[10px] font-bold rounded-md uppercase tracking-wider">Featured</span>
                   )}
                 </div>
               </div>
 
               {/* Info Area */}
-              <div className="py-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-indigo-600 transition-colors">{property.title}</h3>
-                <div className="flex items-center gap-1 text-gray-500 text-sm mb-4">
-                  <MapPin size={14} className="text-gray-400" />
+              <div className="py-4 px-2">
+                <h3 className="md:text-lg text-xs font-bold text-gray-900 mb-1 group-hover:text-indigo-600 transition-colors">{property.title}</h3>
+                <div className="flex items-center gap-1 text-gray-500 text-[8px] md:text-sm mb-4">
+                  <MapPin size={8} className="text-gray-400" />
                   {property.address}, {property.city}
                 </div>
 
                 <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                   <div className="flex items-center gap-4 text-gray-600">
-                    <div className="flex items-center gap-1.5 text-xs font-medium">
-                      <Bed size={16} className="text-gray-400" /> {property.beds}
+                    <div className="flex items-center gap-1.5 text-[10px] md:text-xs font-medium">
+                      <Bed size={16} className="text-gray-400" /> {property.bedrooms}
                     </div>
-                    <div className="flex items-center gap-1.5 text-xs font-medium">
-                      <Bath size={16} className="text-gray-400" /> {property.baths}
+                    <div className="hidden md:flex items-center gap-1.5 text-xs font-medium">
+                      <Bath size={16} className="text-gray-400" /> {property.bathrooms}
                     </div>
-                    <div className="flex items-center gap-1.5 text-xs font-medium">
+                    <div className="flex items-center gap-1.5 text-[10px] md:text-xs font-medium">
                       <Maximize size={16} className="text-gray-400" /> {property.sqft}
                     </div>
                   </div>
-                  <div className="text-rose-500 font-bold">
-                    {property.price}<span className="text-[10px] text-gray-400 font-normal">/month</span>
+                  <div className="text-rose-500 font-bold text-[12px]">
+                    {property.price}<span className="text-[10px] text-gray-400 font-normal"> /month</span>
                   </div>
                 </div>
               </div>
@@ -231,9 +235,19 @@ const FeaturedBuy = () => {
 
       {/* Hide scrollbar styles */}
       <style>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
+     
+        .no-scrollbar {
+         scrollbar-width: none;
+         -ms-overflow-style: none;
+         overflow: -moz-scrollbars-none;
         }
+
+      .no-scrollbar::-webkit-scrollbar {
+       width: 0 !important;    
+       height: 0 !important;
+       display: none !important;
+      background: transparent;
+       }
       `}</style>
     </section>
   );

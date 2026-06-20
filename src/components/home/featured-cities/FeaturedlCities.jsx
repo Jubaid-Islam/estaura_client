@@ -5,7 +5,7 @@ import { NavLink } from 'react-router';
 const CityCard = memo(({ city, index, isVisible, isDesktop = false }) => {
 
 
-  const baseClasses = isDesktop 
+  const baseClasses = isDesktop
     ? `relative group overflow-hidden rounded-2xl h-[300px] bg-gray-200 ${city.span || ''}`
     : `group flex items-center gap-4 p-3 bg-white border border-gray-100 rounded-2xl hover:shadow-xl hover:shadow-indigo-50/50 hover:border-indigo-100 cursor-pointer will-change-transform`;
 
@@ -90,39 +90,39 @@ const FeaturedCities = () => {
       {/* Desktop Version */}
       <section className=" max-w-7xl mx-auto md:py-12 px-4 dm-sans overflow-hidden">
 
-          <div className="space-y-1">
-            <h2 className="text-3xl font-bold text-gray-700 tracking-tight">Find Properties</h2>
-            <div className='mb-6'>
-            <p className="text-gray-500">Explore top cities with best deals</p>
-            </div>
+        <div className="space-y-1">
+          <h2 className="text-xl md:text-3xl font-bold text-gray-700 tracking-tight">Find Properties</h2>
+          <div className='mb-6'>
+            <p className=" text-gray-500">Explore top cities with best deals</p>
           </div>
-  
-<div className='hidden md:block'>
-
-        <div className=" grid grid-cols-1 md:grid-cols-4 gap-6">
-          {cities.map((city, index) => (
-            <CityCard 
-            key={city.id} 
-            city={city} 
-            index={index} 
-            isVisible={isVisible} 
-            isDesktop={true} 
-            />
-          ))}
         </div>
+
+        <div className='hidden md:block'>
+
+          <div className=" grid grid-cols-1 md:grid-cols-4 gap-6">
+            {cities.map((city, index) => (
+              <CityCard
+                key={city.id}
+                city={city}
+                index={index}
+                isVisible={isVisible}
+                isDesktop={true}
+              />
+            ))}
           </div>
+        </div>
       </section>
 
       {/* Mobile Version */}
       <section className="md:hidden dm-sans py-10 px-4 max-w-7xl mx-auto bg-transparent overflow-hidden">
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {cities.map((city, index) => (
-            <CityCard 
-              key={city.id} 
-              city={city} 
-              index={index} 
-              isVisible={isVisible} 
+            <CityCard
+              key={city.id}
+              city={city}
+              index={index}
+              isVisible={isVisible}
             />
           ))}
         </div>

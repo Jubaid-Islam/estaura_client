@@ -102,7 +102,7 @@ export default function ManagerUsers() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-3xl font-medium text-gray-900">Manage users</h1>
+            <h1 className="hidden md:block text-3xl font-medium text-gray-900">Manage users</h1>
             <p className="text-sm text-gray-400 mt-0.5">Manage team members and their permissions</p>
           </div>
           <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3 py-2 w-full sm:w-64">

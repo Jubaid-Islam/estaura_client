@@ -224,7 +224,7 @@ const AgentRequest = () => {
                 <div className="md:hidden px-4 py-3.5">
 
                   {/* Top — date and eye */}
-                  <div className="flex items-center justify-between mb-2.5">
+                  <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-gray-100">
                     <span className="text-[11px] text-gray-400 flex items-center gap-1">
                       <Calendar size={10} /> {formatDate(agent.appliedAt)}
                     </span>

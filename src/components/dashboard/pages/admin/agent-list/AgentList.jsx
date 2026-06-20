@@ -229,7 +229,7 @@ const AgentList = () => {
                   <div className="md:hidden px-4 py-3.5">
 
                     {/* Top row — status / date */}
-                    <div className="flex items-center justify-between mb-2.5">
+                    <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-100">
                       <span className={`text-[11px] font-medium px-2 py-0.5 rounded-md ${sc.cls}`}>
                         {sc.label}
                       </span>

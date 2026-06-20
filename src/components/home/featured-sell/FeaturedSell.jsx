@@ -114,7 +114,7 @@ const FeaturedSell = () => {
               ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
           >
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+              <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 leading-tight">
                 Want to Sell Your{" "}
                 <span className="text-indigo-600 relative inline-block">
                   Property?
@@ -127,7 +127,7 @@ const FeaturedSell = () => {
                   </svg>
                 </span>
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-xs md:text-lg text-gray-600 leading-relaxed">
                 Join over 10,000+ owners who sold their properties through our platform with 0% hassle. Get expert
                 guidance, premium exposure, and close deals faster.
               </p>
@@ -143,7 +143,7 @@ const FeaturedSell = () => {
                   className="group/benefit flex gap-5 p-5 rounded-xl transition-all duration-300 bg-white border border-gray-100 shadow-sm hover:shadow-lg hover:border-indigo-100 hover:-translate-y-1 cursor-default"
                   style={{ transitionDelay: `${index * 50}ms` }}
                   >
-                  <div className="flex-shrink-0 bg-indigo-50 p-3 rounded-xl transition-all group-hover/benefit:bg-indigo-100">
+                  <div className="flex bg-indigo-50 p-3 items-center rounded-xl transition-all group-hover/benefit:bg-indigo-100">
                     {item.icon}
                   </div>
                   <div>
@@ -163,7 +163,7 @@ const FeaturedSell = () => {
                 <div key={idx} className="flex items-center gap-2">
                   <div className="text-indigo-500 bg-indigo-50 p-1.5 rounded-full">{stat.icon}</div>
                   <div>
-                    <p className="text-xl font-bold text-gray-800">{stat.value}</p>
+                    <p className="text-xs font-bold text-gray-800">{stat.value}</p>
                     <p className="text-xs text-gray-500">{stat.label}</p>
                   </div>
                 </div>
@@ -171,17 +171,17 @@ const FeaturedSell = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex items-center justify-center md:justify-start flex-row gap-4 pt-4">
               <NavLink
                 to="/sell"
-                className="inline-flex items-center justify-center gap-2 bg-indigo-600/90 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700/90 transition-all shadow-xl shadow-indigo-50 hover:shadow-indigo-100 hover:-translate-y-0.5 active:translate-y-0 group"
+                className="inline-flex items-center justify-center gap-2 bg-indigo-600/90 text-white px-4  md:px-8 py-4 rounded-xl font-bold text-xs hover:bg-indigo-700/90 transition-all shadow-xl shadow-indigo-50 hover:shadow-indigo-100 hover:-translate-y-0.5 active:translate-y-0 group"
               >
                 List Your Property
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </NavLink>
               <NavLink
                 to="/learn-more"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-gray-700 border-2 border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 transition-all group"
+                className="inline-flex items-center justify-center px-4 md:px-8 py-4 rounded-xl text-xs font-bold text-gray-700 border-2 border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 transition-all group"
               >
                 Learn More
                 <ArrowRight

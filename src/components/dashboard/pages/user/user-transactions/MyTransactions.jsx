@@ -212,7 +212,7 @@ const TxRow = ({ transaction, isLast, showClient = true }) => (
     <div className={`md:hidden px-4 py-4.5 hover:bg-gray-50 transition ${!isLast ? "border-b border-gray-100" : ""}`}>
 
       {/* Top row — type, amount, date */}
-      <div className="flex items-center justify-between border-b border-gray-50 pb-3 mb-2.5">
+      <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-2.5">
         <div className="flex items-center gap-5">
           <span className={`text-xs font-medium px-2 py-0.5 rounded-md ${transaction.paymentType === "rent"
               ? "bg-gray-50 text-blue-700"
