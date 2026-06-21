@@ -59,7 +59,7 @@ const FeaturedSell = () => {
   return (
     <div
       ref={sectionRef}
-      className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dm-sans overflow-hidden"
+      className="py-12 md:py-28 bg-gradient-to-b from-gray-50 to-white dm-sans overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -68,7 +68,7 @@ const FeaturedSell = () => {
             className={`relative group transition-all duration-700 ease-out will-change-transform
               ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
           >
-            <div className="py-4 flex justify-center -mt-20">
+            <div className="py-5 pt-20 md:pt-0  flex justify-center -mt-20">
               <div className="inline-flex items-center gap-2 bg-indigo-50 px-3 py-1.5 rounded-full">
                 <TrendingUp size={16} className="text-indigo-600" />
                 <span className="text-xs font-semibold text-indigo-700 tracking-wide">
@@ -114,7 +114,7 @@ const FeaturedSell = () => {
               ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
           >
             <div className="space-y-4">
-              <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 leading-tight">
+              <h2 className="text-xl md:text-4xl font-extrabold text-gray-900 leading-tight">
                 Want to Sell Your{" "}
                 <span className="text-indigo-600 relative inline-block">
                   Property?

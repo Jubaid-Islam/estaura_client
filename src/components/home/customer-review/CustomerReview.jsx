@@ -205,12 +205,12 @@ const CustomerReview = () => {
   };
 
   return (
-    <section id='customer-review' className="dm-sans py-16 md:py-24 overflow-hidden">
+    <section id='customer-review' className="dm-sans py-20 md:py-26 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         {/* Header with auto slide toggle */}
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
           <div className="text-center md:text-left">
-            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">
+            <h2 className="text-xl md:text-4xl font-bold text-gray-900 mb-3">
               What Our Customers Say
             </h2>
             <p className="text-gray-500 max-w-2xl">
@@ -282,7 +282,7 @@ const CustomerReview = () => {
                   />
                   <div>
                     <div className="flex items-center gap-2">
-                      <h4 className="font-bold text-gray-800">{review.name}</h4>
+                      <h4 className="font-bold text-gray-800 text-xs">{review.name}</h4>
                       {review.verified && (
                         <span className="bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full font-semibold">
                           Verified

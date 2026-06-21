@@ -101,7 +101,7 @@ const FeaturedBuy = () => {
   }, [buyProperties.length, updateActiveIndex]);
 
   return (
-    <section className="dm-sans py-10 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+    <section className="dm-sans py-8 md:py-12 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
       {/* Header Section */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex-1 text-left">
@@ -142,7 +142,7 @@ const FeaturedBuy = () => {
 
       <div
         ref={scrollRef}
-        className="overflow-x-auto overflow-y-hidden flex gap-6 pb-8 no-scrollbar snap-x snap-mandatory"
+        className="overflow-x-auto overflow-y-hidden flex gap-6 pb-3 md:pb-6 no-scrollbar snap-x snap-mandatory"
         style={{
           WebkitOverflowScrolling: "touch",
         }}

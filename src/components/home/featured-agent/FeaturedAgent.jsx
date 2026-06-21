@@ -75,11 +75,11 @@ const FeaturedAgent = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="dm-sans py-16 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+        <section ref={sectionRef} className="dm-sans py-10 md:py-16 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">Agents</h2>
+                    <h2 className="text-xl md:text-4xl font-bold text-gray-900 mb-3">Agents</h2>
                     <p className="text-gray-500">Connect with our top-rated real estate agents</p>
                 </div>
 
@@ -107,7 +107,7 @@ const FeaturedAgent = () => {
                                 </div>
                             </div>
                             <div className="p-5">
-                                <h3 className="text-lg font-bold text-gray-800">{agent.name}</h3>
+                                <h3 className="text-sm font-bold text-gray-800">{agent.name}</h3>
                                 <p className="text-xs text-indigo-500 font-semibold mb-3">{agent.title}</p>
                                 <div className="flex items-center gap-1 text-gray-500 text-sm mb-3">
                                     <MapPin size={14} /> {agent.location}
