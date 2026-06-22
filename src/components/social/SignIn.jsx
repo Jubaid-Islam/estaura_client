@@ -1,10 +1,16 @@
-import { use, useState } from 'react'
+import { use, useState, useRef } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
 import Swal from 'sweetalert2'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { Mail, Lock, AlertCircle } from 'lucide-react'
 import Logo from '../../shared/Logo';
 import useSaveGoogleUser from '../../hooks/user/useSaveGoogleUser'
+
+const DEMO_CREDENTIALS = {
+  user:  { email: 'user@1.com',  password: '111111' },
+  agent: { email: 'agent@1.com', password: '111111' },
+  admin: { email: 'admin@1.com', password: '111111' },
+};
 
 const SignIn = () => {
   const { signIn, loginWithGoogle } = use(AuthContext)
@@ -14,6 +20,18 @@ const SignIn = () => {
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isGoogleLoading, setIsGoogleLoading] = useState(false)
+  const [activeRole, setActiveRole] = useState(null)
+
+  const emailRef = useRef(null)
+  const passwordRef = useRef(null)
+
+  const handleQuickFill = (role) => {
+    const cred = DEMO_CREDENTIALS[role];
+    if (!cred) return;
+    if (emailRef.current) emailRef.current.value = cred.email;
+    if (passwordRef.current) passwordRef.current.value = cred.password;
+    setActiveRole(role);
+  };
 
   const handleSignIn = async e => {
     e.preventDefault()
@@ -49,10 +67,7 @@ const SignIn = () => {
     setError('')
     try {
       const result = await loginWithGoogle()
-      
-      // save user in database
       await mutateAsync(result.user)
-
       Swal.fire({
         icon: 'success',
         title: 'Login Successful!',
@@ -80,18 +95,35 @@ const SignIn = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center px-4 dm-sans">
       <div className="w-full max-w-lg">
 
-        {/* Card */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
 
           {/* Branding */}
-          <div className="text-center mb-8">
-                     <div className='flex items-center justify-center'>
-                       <Logo></Logo>
-                       <h2 className="text-2xl font-semibold text-[#486be3] ml-2">
-                         Estaura
-                       </h2>
-                     </div>
+          <div className="text-center mb-6">
+            <div className='flex items-center justify-center'>
+              <Logo></Logo>
+              <h2 className="text-2xl font-semibold text-[#486be3] ml-2">
+                Estaura
+              </h2>
+            </div>
             <p className="text-gray-400 text-sm mt-2">Welcome back! Please sign in to continue.</p>
+          </div>
+
+          {/* Demo role quick-fill */}
+          <div className="grid grid-cols-3 gap-2 mb-6">
+            {Object.keys(DEMO_CREDENTIALS).map((role) => (
+              <button
+                key={role}
+                type="button"
+                onClick={() => handleQuickFill(role)}
+                className={`py-2 rounded-xl text-sm font-medium capitalize border transition ${
+                  activeRole === role
+                    ? 'bg-indigo-600 text-white border-indigo-600'
+                    : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100'
+                }`}
+              >
+                {role}
+              </button>
+            ))}
           </div>
 
           {/* Form */}
@@ -103,10 +135,12 @@ const SignIn = () => {
               <div className="relative">
                 <Mail size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
+                  ref={emailRef}
                   name="email"
                   type="email"
                   placeholder="your@email.com"
                   required
+                  onChange={() => setActiveRole(null)}
                   className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition"
                 />
               </div>
@@ -121,10 +155,12 @@ const SignIn = () => {
               <div className="relative">
                 <Lock size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
+                  ref={passwordRef}
                   name="password"
                   type="password"
                   placeholder="Enter your password"
                   required
+                  onChange={() => setActiveRole(null)}
                   className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition"
                 />
               </div>
