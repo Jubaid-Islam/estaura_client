@@ -86,7 +86,6 @@ const PropertyHoverCard = ({ conversation }) => (
           </p>
         )}
       </div>
-      <p className="text-xs text-indigo-400 font-medium pt-0.5">Click to view full details →</p>
     </div>
   </div>
 );

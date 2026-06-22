@@ -21,12 +21,6 @@ const getAvatarColor = (id = "") => {
   return AVATAR_COLORS[idx];
 };
 
-const formatRevenue = (val) => {
-  if (val >= 1_000_000) return `$${(val / 1_000_000).toFixed(1)}M`;
-  if (val >= 1_000) return `$${(val / 1_000).toFixed(0)}K`;
-  return `$${val?.toLocaleString() || 0}`;
-};
-
 const formatDate = (d) => {
   if (!d) return "—";
   return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
@@ -45,7 +39,6 @@ export default function TopratedAgent() {
 
 
   const totalDeals = agents.reduce((s, a) => s + a.dealsClosed, 0);
-  const totalRevenue = agents.reduce((s, a) => s + a.totalRevenue, 0);
 
   if (isLoading) return (
     <div className="p-6 space-y-3 animate-pulse">
@@ -83,16 +76,10 @@ export default function TopratedAgent() {
         {/* Stats */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-6">
 
-          {/* Total revenue — primary highlight */}
-          <div className="border-b border-gray-100 pb-3 mb-3">
-            <p className="text-xs text-gray-400 uppercase tracking-wide">Total revenue</p>
-            <p className="text-2xl font-bold text-indigo-600">
-              {formatRevenue(totalRevenue)}
-            </p>
-          </div>
+
 
           {/* stats */}
-          <div className="flex flex-col md:flex-row md:gap-6 space-y-3 md:space-y-0">
+          <div className="flex flex-row md:gap-6 ">
 
             <div className="flex items-center">
               <div className="w-7 h-7 flex items-center justify-center">

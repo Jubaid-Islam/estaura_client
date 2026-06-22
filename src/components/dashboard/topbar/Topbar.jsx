@@ -1,15 +1,11 @@
-// components/Topbar.jsx
-import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Search, X, ChevronRight, Home } from "lucide-react";
 import Notifications from "../../../shared/Notifications";
 import Profile from "../../../shared/Profile";
+import Messages from "../../../shared/Messages";
 
 const Topbar = () => {
   const location = useLocation();
-  const [searchFocused, setSearchFocused] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
-  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   // Build breadcrumb
   const pathSegments = location.pathname.split("/").filter(Boolean);
@@ -72,48 +68,9 @@ const Topbar = () => {
           {/* right: Actions */}
           <div className="flex items-center gap-2 flex-shrink-0">
 
-            {/* Search bar — desktop */}
-            <div className="hidden md:flex items-center">
-              <div
-                className={`flex items-center gap-2 px-3 py-2 rounded-xl border transition-all duration-200 ${searchFocused
-                    ? "w-64 border-indigo-300 bg-white shadow-sm ring-2 ring-indigo-100"
-                    : "w-44 border-slate-200 bg-slate-50"
-                  }`}
-              >
-                <Search size={14} className="text-slate-400 flex-shrink-0" />
-                <input
-                  type="text"
-                  placeholder="Search…"
-                  value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
-                  onFocus={() => setSearchFocused(true)}
-                  onBlur={() => setSearchFocused(false)}
-                  className="w-full bg-transparent text-sm text-slate-700 placeholder-slate-400 outline-none"
-                />
-                {searchValue && (
-                  <button
-                    onClick={() => setSearchValue("")}
-                    className="text-slate-400 hover:text-slate-600 flex-shrink-0"
-                  >
-                    <X size={13} />
-                  </button>
-                )}
-              </div>
-            </div>
-
+            <Messages />
             <Notifications />
 
-
-            {/* Divider */}
-            <div className="w-px h-5 bg-slate-200 hidden sm:block" />
-
-            {/* Search icon — mobile */}
-            <button
-              onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
-              className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl text-slate-700 hover:text-slate-800 hover:bg-slate-100 transition-all"
-            >
-              <Search size={18} />
-            </button>
 
             {/* Divider */}
             <div className="w-px h-5 bg-slate-200 hidden sm:block" />
@@ -122,31 +79,7 @@ const Topbar = () => {
           </div>
         </div>
 
-        {/* Mobile search drawer  */}
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-200 ${mobileSearchOpen ? "max-h-20 border-t border-gray-100" : "max-h-0"
-            }`}
-        >
-          <div className="ml-0 lg:ml-[260px] px-4 py-3">
-            <div className="flex items-center gap-2 bg-slate-50 rounded-xl border border-slate-200 px-3 py-2">
-              <Search size={15} className="text-slate-400 flex-shrink-0" />
-              <input
-                type="text"
-                placeholder="Search properties, users…"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                className="flex-1 bg-transparent text-sm outline-none text-slate-700 placeholder-slate-400"
-                autoFocus={mobileSearchOpen}
-              />
-              <button
-                onClick={() => setMobileSearchOpen(false)}
-                className="text-slate-400 hover:text-slate-600"
-              >
-                <X size={15} />
-              </button>
-            </div>
-          </div>
-        </div>
+
       </header>
 
       {/* Spacer for fixed header */}

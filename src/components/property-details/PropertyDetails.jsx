@@ -39,6 +39,7 @@ const PropertyDetails = () => {
   const agent = agentInfo?.agentInfo;
   const agentName = agent?.name || null;
   const agentEmail = agent?.email || null;
+  const agentRole = currentUser?.role === 'agent'
   const agentInitials = agentName
     ? agentName.split(" ").map(w => w[0]).join("").toUpperCase().slice(0, 2)
     : "?";
@@ -280,11 +281,37 @@ const PropertyDetails = () => {
           {/* right — Contact Card  */}
           <div className="lg:col-span-1 flex flex-col gap-6">
             {
-              agent ? (
+              !agent ? (
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+                  <div className="flex flex-col items-center justify-center py-16 text-center">
+                    <Ban size={32} className="text-red-300 mx-auto mb-2" />
+                    <h3 className="text-xl font-semibold text-gray-800">
+                      No Agents Available
+                    </h3>
+                    <p className="mt-2 max-w-md text-sm text-gray-500">
+                      Please check back later
+                    </p>
+                  </div>
+                </div>
+
+              ) : agentRole ? (
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+                  <div className="flex flex-col items-center justify-center py-16 text-center">
+                    <h3 className="text-xl font-semibold text-gray-800">
+                      Agents cannot message
+                    </h3>
+                    <p className="mt-2 max-w-md text-sm text-gray-500">
+                      This feature is available only for clients.
+                    </p>
+                  </div>
+                </div>
+
+              ) : (
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
 
                   <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                    <User size={18} className="text-indigo-600" /> Contact Agent
+                    <User size={18} className="text-indigo-600" />
+                    Contact Agent
                   </h3>
 
                   {/* Agent Info */}
@@ -294,8 +321,14 @@ const PropertyDetails = () => {
                         {agentInitials}
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-800 text-sm">{agentName}</p>
-                        {agentEmail && <p className="text-xs text-gray-400">{agentEmail}</p>}
+                        <p className="font-semibold text-gray-800 text-sm">
+                          {agentName}
+                        </p>
+                        {agentEmail && (
+                          <p className="text-xs text-gray-400">
+                            {agentEmail}
+                          </p>
+                        )}
                       </div>
                     </div>
                   )}
@@ -392,19 +425,9 @@ const PropertyDetails = () => {
                     </form>
                   )}
                 </div>
-              ) : (
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-                  <div className="flex flex-col items-center justify-center py-16 text-center">
-                    <h3 className="text-xl font-semibold text-gray-800">
-                      No Agents Available
-                    </h3>
-                    <p className="mt-2 max-w-md text-sm text-gray-500">
-                      Please check back later or apply to become an agent.
-                    </p>
-                  </div>
-                </div>
               )
             }
+
 
 
             {/* Map */}

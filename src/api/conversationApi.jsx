@@ -27,3 +27,8 @@ export const deleteConversation = async (conversationId, axiosSecure) => {
   const res = await axiosSecure.delete(`/conversations/${conversationId}`);
   return res.data;
 };
+
+export const markConversationAsRead = async (conversationId, axiosSecure) => {
+  const res = await axiosSecure.patch(`/conversations/mark-read/${conversationId}`);
+  return res.data;
+};

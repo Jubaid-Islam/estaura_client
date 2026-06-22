@@ -212,7 +212,7 @@ const PropertyList = () => {
               className={`px-4 py-1.5 rounded-lg text-sm font-medium capitalize transition ${listingFilter === type ? 'bg-indigo-600 text-white shadow-sm' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                 }`}
             >
-              {type === 'all' ? 'All' : type === 'rent' ? 'For Rent' : 'For Sale'}
+              {type === 'all' ? 'All' : type === 'rent' ? 'Rent' : 'Buy'}
             </button>
           ))}
         </div>
@@ -280,7 +280,7 @@ const PropertyList = () => {
                     <span className={`inline-flex items-center gap-1.5 py-1 text-xs font-bold uppercase ${property.listingType === 'rent' ? 'text-blue-700' : 'text-emerald-700'
                       }`}>
                       <Tag size={12} />
-                      {property.listingType === 'rent' ? 'Rent' : 'Sale'}
+                      {property.listingType === 'rent' ? 'Rent' : 'Buy'}
                     </span>
                   </td>
 

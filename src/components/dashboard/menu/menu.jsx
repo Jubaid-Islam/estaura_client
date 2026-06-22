@@ -6,6 +6,7 @@ export const menu = {
     { name: "Admin Dashboard", path: "admin-dashboard", icon: <LayoutDashboard size={18} /> },
     { name: "Manage users", path: "manage-users", icon: <Users size={18} /> },
     { name: "Property list", path: "property-list", icon: <NotebookPen size={18} /> },
+    { name: "My conversations", path: "my-conversations", icon: <MessageCircle  size={18} /> },
     { name: "Transactions", path: "transactions", icon: <HandCoins  size={18} /> },
     { name: "Agent list", path: "agent-list", icon: <UserStar   size={18} /> },
     // { name: "Connect api", path: "connect-api", icon: <Plug size={18} /> },

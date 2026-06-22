@@ -3,19 +3,20 @@ import { NavLink, useLocation, useNavigate } from 'react-router'
 import { User, LogOut, LogIn, ChevronDown, ChartNoAxesCombined, Home } from 'lucide-react'
 import Swal from 'sweetalert2'
 import { AuthContext } from '../contexts/AuthContext'
+import useUsers from '../hooks/user/useUser'
 
 export default function Profile() {
-  const { user, logOut } = useContext(AuthContext)
+  const { logOut } = useContext(AuthContext)
   const [isOpen, setIsOpen] = useState(false)
   const containerRef = useRef(null)
   const navigate = useNavigate()
   const location = useLocation()
-
+  const { data: me } = useUsers();
   const isDashboard = location.pathname.startsWith("/dashboard")
 
   // fallback initials
-  const initials = user?.displayName
-    ? user.displayName.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()
+  const initials = me?.name
+    ? me.name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()
     : "??"
 
   // close dropdown on outside click
@@ -60,16 +61,16 @@ export default function Profile() {
 
   return (
     <div ref={containerRef} className="relative inline-block text-left">
-      {user ? (
+      {me ? (
         <>
           {/* Trigger Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="group flex items-center gap-2 p-1 pr-3 rounded-full border border-gray-100 bg-white hover:bg-gray-50 transition-all duration-200 active:scale-95"
           >
-            {user?.photoURL ? (
+            {me?.photoURL ? (
               <img
-                src={user.photoURL}
+                src={me.photoURL}
                 alt="profile"
                 className="w-8 h-8 rounded-full object-cover ring-2 ring-transparent group-hover:ring-indigo-100 transition-all"
               />
@@ -79,7 +80,7 @@ export default function Profile() {
               </div>
             )}
             <span className="hidden sm:block text-sm font-medium text-gray-700">
-              {user?.displayName?.split(" ")[0]}
+              {me?.name?.split(" ")[0]}
             </span>
             <ChevronDown
               size={14}
@@ -96,8 +97,8 @@ export default function Profile() {
           >
             {/* User Header */}
             <div className="px-4 py-4 border-b border-gray-50 bg-gray-50/30 rounded-t-2xl">
-              <p className="text-sm font-semibold text-gray-900 truncate">{user?.displayName}</p>
-              <p className="text-xs text-gray-500 truncate mt-0.5">{user?.email}</p>
+              <p className="text-sm font-semibold text-gray-900 truncate">{me?.name}</p>
+              <p className="text-xs text-gray-500 truncate mt-0.5">{me?.email}</p>
             </div>
 
             {/* Menu Links */}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MessageSquare, ArrowLeft, Search, X } from "lucide-react";
 import useUser from "../../../../../hooks/user/useUser";
-import useConversations from "../../../../../hooks/conversation/useConversations";
+import { useConversations, useMarkConversationAsRead } from "../../../../../hooks/conversation/useConversations";
 import ChatWindow from "../../../../chat/ChatWindow";
 
 const formatTime = (dateString) => {
@@ -45,6 +45,8 @@ const AgentConversations = () => {
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showChat, setShowChat] = useState(false);
+  const { markConversationAsRead } = useMarkConversationAsRead();
+
 
   const filtered = conversations.filter((c) =>
     !searchTerm.trim() ||
@@ -55,6 +57,10 @@ const AgentConversations = () => {
   const handleSelect = (conv) => {
     setSelectedConversation(conv);
     setShowChat(true);
+
+    if (conv.unreadCount > 0) {
+      markConversationAsRead(conv._id);
+    }
   };
 
   if (isLoading) {
@@ -68,7 +74,7 @@ const AgentConversations = () => {
   }
 
   return (
-    <div className="py-5 md:p-6 lg:p-8 bg-gradient-to-br  from-gray-50 to-gray-100  dm-sans">
+    <div className="pt-5 dm-sans">
 
       <div className="pb-6">
 
@@ -77,7 +83,7 @@ const AgentConversations = () => {
             onClick={() => setShowChat(false)}
             className="md:hidden flex items-center gap-1.5 px-1 pb-2 font-medium text-sm text-gray-600 hover:text-indigo-600 transition"
           >
-            <ArrowLeft size={13} /> Back 
+            <ArrowLeft size={13} /> Back
           </button>
         )}
       </div>
@@ -127,9 +133,11 @@ const AgentConversations = () => {
                     key={conv._id}
                     onClick={() => handleSelect(conv)}
                     className={`w-full flex items-center gap-3 px-4 py-3.5 hover:bg-indigo-50/40 transition border-b border-gray-50 text-left ${selectedConversation?._id === conv._id
-                        ? "bg-indigo-50 border-l-2 border-l-indigo-500"
-                        : ""
-                      }`}
+                      ? "bg-indigo-50 border-l-2 border-l-indigo-500"
+                      : ""}
+                       ${conv.unreadCount ? 'bg-indigo-100/30' : ''
+                      }
+                      `}
                   >
                     {/* Client Avatar */}
                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 text-sm font-bold ${getAvatarColor(conv.clientId)}`}>
@@ -139,15 +147,29 @@ const AgentConversations = () => {
                     {/* Info */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-1">
+
                         <p className="text-sm font-semibold text-gray-900 truncate">
                           {conv.clientName || "Client"}
                         </p>
+
                         <span className="text-xs text-gray-400 flex-shrink-0">
                           {formatTime(conv.lastMessageAt)}
                         </span>
                       </div>
                       <p className="text-xs text-gray-500 truncate mt-0.5">{conv.propertyTitle}</p>
-                      <p className="text-xs text-gray-400 truncate mt-0.5">{conv.lastMessage}</p>
+
+                       {conv.unreadCount > 0 ? (
+                        <div className="flex justify-between">
+                          <p className="text-sm font-bold text-gray-700 truncate mt-0.5">{conv.lastMessage}</p>
+                       
+                            <span className="w-5 h-5 bg-indigo-600 border text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                              {conv.unreadCount}
+                            </span>          
+                        </div>
+                      ) : (
+                        <p className="text-xs text-gray-400 truncate mt-0.5">{conv.lastMessage}</p>
+                      )
+                      }
                     </div>
                   </button>
                 ))

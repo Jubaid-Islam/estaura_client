@@ -143,7 +143,9 @@ export default function ManagerUsers() {
           ) : filteredUsers.map((user) => {
             const role = user.role || 'user';
             const rc = roleConfig[role] || roleConfig.user;
-            const lastLogin = user.lastLogin ? new Date(user.lastLogin) : null;
+            const lastLogin = user.lastLogin || user.updatedAt
+              ? new Date(user.lastLogin || user.updatedAt)
+              : null;
 
             return (
               <div
