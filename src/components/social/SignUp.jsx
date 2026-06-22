@@ -77,7 +77,6 @@ const SignUp = () => {
     try {
 
       const result = await loginWithGoogle()
-      console.log(result.user)
 
       // save user in database
       await mutateAsync(result.user)

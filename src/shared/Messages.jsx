@@ -9,7 +9,6 @@ const Messages = () => {
     const role = currentUser?.role;
     const userId = currentUser?._id?.toString();
     const { conversations } = useConversations(userId, role);
-    console.log(conversations);
 
 
     if (!role) return null;
@@ -36,7 +35,7 @@ const Messages = () => {
                     />
                 )}
             </NavLink>
-            
+
         </div>
     );
 };

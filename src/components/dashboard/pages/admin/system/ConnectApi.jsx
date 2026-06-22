@@ -18,7 +18,7 @@ export default function ConnectApi() {
 
     const [isAutoSyncing, setIsAutoSyncing] = useState(false);
     const api = apis[0];
-    console.log(api)
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
