@@ -23,8 +23,7 @@ const Messages = () => {
     );
 
     return (
-        <div className='pr-2 pt-1'>
-
+        <div className='px-2 pt-1'>
             <NavLink to={path} className="relative inline-flex">
                 <Send size={18} className="text-gray-600" />
 

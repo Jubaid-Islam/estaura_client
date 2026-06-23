@@ -235,7 +235,7 @@ const JoinAgent = () => {
                   >
                     {isPending
                       ? <><Loader2 size={15} className="animate-spin" /> Submitting...</>
-                      : <>Submit application <ArrowRight size={15} /></>
+                      : <>Submit <ArrowRight size={15} /></>
                     }
                   </button>
                 </div>

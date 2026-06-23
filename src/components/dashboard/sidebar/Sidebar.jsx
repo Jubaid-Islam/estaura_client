@@ -81,10 +81,9 @@ const NavItem = ({ item, closeMobileSidebar }) => {
 };
 
 // Sidebar Main Component 
-const Sidebar = () => {
+const Sidebar = ({ mobileOpen, setMobileOpen }) => {
   const { data: me, isLoading } = useUsers();
   const { logOut } = useContext(AuthContext);
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   const dashboardMenu = menu[me?.role] || [];
   const sections = (dashboardMenu[0]?.items) ? dashboardMenu : [{ title: "Navigation", items: dashboardMenu }];
@@ -117,12 +116,9 @@ const Sidebar = () => {
       `}</style>
 
       {/* Mobile Hamburger */}
-      <button
-        onClick={() => setMobileOpen(true)}
-        className="lg:hidden fixed top-6 left-4 z-40 p-2 bg-white text-gray-600 hover:text-indigo-600 transition-all active:scale-95 items-center"
-      >
-        <Menu size={20} />
-      </button>
+      <div className="lg:hidden fixed top-4 left-3 z-40 p-2 items-center">
+      <Logo/>
+      </div>
 
       {/* Backdrop Overlay  */}
       <div

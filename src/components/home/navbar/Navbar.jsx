@@ -105,7 +105,7 @@ const Navbar = () => {
               : 'top-4 w-[95%] max-w-7xl rounded-xl bg-white/90 backdrop-blur-sm border border-gray-100 shadow-sm'}
           `}
         >
-          <div className="px-4 tpy-1 md:py-0 sm:px-6 lg:px-8">
+          <div className="px-4 py-2 md:py-0 sm:px-6 lg:px-8">
             <div className='flex justify-between items-center transition-all duration-500'>
               
               <div className="flex items-center gap-16">

@@ -50,7 +50,7 @@ const Notifications = () => {
         : UserNotifications;
 
   return (
-    <div className="relative">
+    <div className="relative pr-1">
 
       {/* Bell button */}
       <button

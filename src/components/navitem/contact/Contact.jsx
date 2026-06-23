@@ -167,7 +167,7 @@ const Contact = () => {
                   >
                     {isSubmitting
                       ? <><Loader2 size={16} className="animate-spin" /> Sending...</>
-                      : <><Send size={15} /> Send message</>
+                      : <><Send size={15} /> Send </>
                     }
                   </button>
                 </div>

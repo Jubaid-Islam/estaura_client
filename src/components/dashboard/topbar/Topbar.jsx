@@ -1,10 +1,10 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { Search, X, ChevronRight, Home } from "lucide-react";
+import { Search, X, ChevronRight, Home, Menu } from "lucide-react";
 import Notifications from "../../../shared/Notifications";
 import Profile from "../../../shared/Profile";
 import Messages from "../../../shared/Messages";
 
-const Topbar = () => {
+const Topbar = ({ setMobileOpen }) => {
   const location = useLocation();
 
   // Build breadcrumb
@@ -71,11 +71,18 @@ const Topbar = () => {
             <Messages />
             <Notifications />
 
-
             {/* Divider */}
             <div className="w-px h-5 bg-slate-200 hidden sm:block" />
 
             <Profile />
+
+            {/* menu */}
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="lg:hidden py-2 px-3.5 bg-white text-gray-600 hover:text-indigo-600 transition-all active:scale-95 items-center"
+            >
+              <Menu size={20} />
+            </button>
           </div>
         </div>
 

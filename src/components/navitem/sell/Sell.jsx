@@ -365,21 +365,7 @@ const Sell = () => {
           </div>
         )}
 
-        {/* Trust Badges */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-          {[
-            { bg: 'bg-green-100', color: 'text-green-600', icon: <TrendingUp />, label: 'Best Market Value' },
-            { bg: 'bg-blue-100', color: 'text-blue-600', icon: <BadgeCheck />, label: 'Verified Buyers' },
-            { bg: 'bg-purple-100', color: 'text-purple-600', icon: <ChevronsUp />, label: 'Fastest Closings' },
-          ].map((item, i) => (
-            <div key={i} className="bg-white p-5 rounded-2xl border border-gray-100 flex items-center gap-4 shadow-sm">
-              <div className={`w-10 h-10 ${item.bg} rounded-full flex items-center justify-center ${item.color} font-bold text-lg`}>
-                {item.icon}
-              </div>
-              <p className="text-sm font-semibold text-gray-700">{item.label}</p>
-            </div>
-          ))}
-        </div>
+
       </div>
     </div>
   );
