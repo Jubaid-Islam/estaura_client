@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Elements, CardElement } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { X, CreditCard, Shield, Building2, MapPin, DollarSign, Calendar, CheckCircle } from "lucide-react";
+import { X, CreditCard, Shield, Building2, MapPin, DollarSign, Calendar, CheckCircle, Copy, Check } from "lucide-react";
 import usePayment from "../../hooks/payment/usePayment";
 import { cloudinaryUrl } from "../../hooks/cloudniaryUrl";
 
@@ -19,7 +19,44 @@ const CARD_ELEMENT_OPTIONS = {
   },
 };
 
-// ── Inner form 
+const TEST_CARD = {
+  number: "4242 4242 4242 4242",
+  exp: "04 / 44",
+  cvc: "444",
+  zip: "44444",
+};
+
+// ── Test card helper ──
+const TestCardHelper = () => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    const full = `${TEST_CARD.number} ${TEST_CARD.exp} ${TEST_CARD.cvc} ${TEST_CARD.zip}`;
+    navigator.clipboard.writeText(full);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  return (
+    <div className="flex items-center justify-between gap-2 p-3 bg-indigo-50 rounded-xl mb-3">
+      <div className="text-xs text-indigo-800 leading-relaxed">
+        <p className="font-semibold mb-0.5">Demo card</p>
+        <p className="font-mono">{TEST_CARD.number} &nbsp;&nbsp; {TEST_CARD.exp} &nbsp; {TEST_CARD.cvc}
+          &nbsp; {TEST_CARD.zip}</p>
+      </div>
+      <button
+        type="button"
+        onClick={handleCopy}
+        className="flex items-center gap-1 px-2 py-1.5 bg-white border border-indigo-200 rounded-lg text-xs font-medium text-indigo-700 hover:bg-indigo-100 transition flex-shrink-0"
+      >
+        {copied ? <Check size={12} /> : <Copy size={12} />}
+        {copied ? "Copied" : "Copy"}
+      </button>
+    </div>
+  );
+};
+
+// ── Inner form
 const PaymentForm = ({ deal, currentUser, amount, month, onSuccess, onClose }) => {
   const { handlePayment, isProcessing, error, setError } = usePayment({
     deal, currentUser, amount, month, onSuccess,
@@ -27,6 +64,10 @@ const PaymentForm = ({ deal, currentUser, amount, month, onSuccess, onClose }) =
 
   return (
     <div className="space-y-4">
+
+      {/* Test card helper  */}
+      <TestCardHelper />
+
       {/* Card input */}
       <div>
         <label className="block text-xs font-semibold text-gray-600 mb-2">Card Details</label>
@@ -76,7 +117,7 @@ const PaymentForm = ({ deal, currentUser, amount, month, onSuccess, onClose }) =
   );
 };
 
-//  Success Screen 
+// Success Screen
 const PaymentSuccess = ({ transactionRef, amount, onClose }) => (
   <div className="text-center py-6 space-y-3">
     <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto">
@@ -100,7 +141,7 @@ const PaymentSuccess = ({ transactionRef, amount, onClose }) => (
   </div>
 );
 
-// Main Modal 
+// Main Modal
 const PaymentModal = ({ deal, currentUser, month = null, onClose, onPaymentSuccess }) => {
   const [successRef, setSuccessRef] = useState(null);
   const amount = deal.propertyPrice;
@@ -166,9 +207,8 @@ const PaymentModal = ({ deal, currentUser, month = null, onClose, onPaymentSucce
               </div>
 
               {/* Payment type badge */}
-              <div className={`flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold mb-4 ${
-                isRent ? "bg-blue-50 text-blue-600" : "bg-emerald-50 text-emerald-600"
-              }`}>
+              <div className={`flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold mb-4 ${isRent ? "bg-blue-50 text-blue-600" : "bg-emerald-50 text-emerald-600"
+                }`}>
                 {isRent ? "Monthly Recurring Payment" : "One-time Purchase Payment"}
               </div>
 
