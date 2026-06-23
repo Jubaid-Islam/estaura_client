@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Send, X, User, Mail, ChevronDown, Info, MapPin, Tag, DollarSign, Building2, Trash2 } from "lucide-react";
-import { useNavigate } from "react-router";
+import { Send, X, User, Mail, ChevronDown, Info, MapPin, Tag, DollarSign, Building2, Trash2, ArrowLeft, ChevronLeft } from "lucide-react";
+import { NavLink, useNavigate } from "react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useMessages from "../../hooks/messages/useMessages";
@@ -12,10 +12,10 @@ import { deleteConversation } from "../../api/conversationApi";
 import { cloudinaryUrl } from "../../hooks/cloudniaryUrl";
 
 const DEAL_STATUSES = [
-  { value: "interested",      label: "Interested",      color: "text-blue-600 bg-gray-50" },
+  { value: "interested", label: "Interested", color: "text-blue-600 bg-gray-50" },
   { value: "visit_scheduled", label: "Visit Scheduled", color: "text-purple-600 bg-gray-50" },
-  { value: "negotiating",     label: "Negotiating",     color: "text-yellow-600 bg-gray-50" },
-  { value: "deal_closed",     label: "Deal Closed",     color: "text-emerald-600 bg-gray-50" },
+  { value: "negotiating", label: "Negotiating", color: "text-yellow-600 bg-gray-50" },
+  { value: "deal_closed", label: "Deal Closed", color: "text-emerald-600 bg-gray-50" },
 ];
 
 const formatTime = (dateString) => {
@@ -60,9 +60,8 @@ const PropertyHoverCard = ({ conversation }) => (
         <div className="w-full h-full flex items-center justify-center"><Building2 size={28} className="text-gray-300" /></div>
       )}
       {conversation.listingType && (
-        <span className={`absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full text-xs font-bold uppercase ${
-          conversation.listingType === "rent" ? "bg-blue-600 text-white" : "bg-emerald-600 text-white"
-        }`}>
+        <span className={`absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full text-xs font-bold uppercase ${conversation.listingType === "rent" ? "bg-blue-600 text-white" : "bg-emerald-600 text-white"
+          }`}>
           {conversation.listingType}
         </span>
       )}
@@ -91,7 +90,7 @@ const PropertyHoverCard = ({ conversation }) => (
 );
 
 
-const ChatWindow = ({ conversation, currentUserId, currentUserRole, currentUserName, onDealStatusChange, onConversationDeleted }) => {
+const ChatWindow = ({ conversation, currentUserId, currentUserRole, currentUserName, onDealStatusChange, onConversationDeleted, onBack }) => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -138,7 +137,7 @@ const ChatWindow = ({ conversation, currentUserId, currentUserRole, currentUserN
   useEffect(() => {
     const handleClick = (e) => {
       if (infoModalRef.current && !infoModalRef.current.contains(e.target) &&
-          infoButtonRef.current && !infoButtonRef.current.contains(e.target)) {
+        infoButtonRef.current && !infoButtonRef.current.contains(e.target)) {
         setShowInfoModal(false);
       }
       if (dealDropdownRef.current && !dealDropdownRef.current.contains(e.target)) {
@@ -154,17 +153,17 @@ const ChatWindow = ({ conversation, currentUserId, currentUserRole, currentUserN
     setShowDealDropdown(false);
     try {
       await updateConversationDealStatus(conversation._id.toString(), {
-        dealStatus:    status,
-        propertyId:    conversation.propertyId,
+        dealStatus: status,
+        propertyId: conversation.propertyId,
         propertyTitle: conversation.propertyTitle,
         propertyImage: conversation.propertyImage,
-        propertyCity:  conversation.propertyCity  || "",
-        propertyType:  conversation.propertyType  || "",
+        propertyCity: conversation.propertyCity || "",
+        propertyType: conversation.propertyType || "",
         propertyPrice: conversation.propertyPrice || 0,
-        listingType:   conversation.listingType   || "buy",
-        agentId:       conversation.agentId,
-        clientId:      conversation.clientId,
-        clientEmail:   conversation.clientEmail,
+        listingType: conversation.listingType || "buy",
+        agentId: conversation.agentId,
+        clientId: conversation.clientId,
+        clientEmail: conversation.clientEmail,
       }, axiosSecure);
 
       if (conversation.propertyId) {
@@ -216,13 +215,13 @@ const ChatWindow = ({ conversation, currentUserId, currentUserRole, currentUserN
     if (!text.trim() || isPending) return;
     try {
       await sendMessage({
-        senderId:      currentUserId,
-        senderRole:    currentUserRole,
-        senderName:    currentUserName,
-        text:          text.trim(),
+        senderId: currentUserId,
+        senderRole: currentUserRole,
+        senderName: currentUserName,
+        text: text.trim(),
         recipientId,
         recipientRole,
-        propertyId:    conversation.propertyId,
+        propertyId: conversation.propertyId,
         propertyTitle: conversation.propertyTitle,
         propertyImage: conversation.propertyImage,
       });
@@ -259,10 +258,19 @@ const ChatWindow = ({ conversation, currentUserId, currentUserRole, currentUserN
   }, {});
 
   return (
-    <div className="flex flex-col h-full min-h-0">
+    <div className="flex flex-col h-full ">
 
       {/* Header */}
-      <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3 bg-white flex-shrink-0">
+      <div className="p-3 border-b border-gray-100 flex items-center gap-3 bg-white flex-shrink-0">
+
+        {/* back */}
+        <div className="md:hidden">
+          <button
+            onClick={onBack}
+            className="font-medium text-sm text-gray-500 hover:text-indigo-600 transition ">
+            <ChevronLeft size={18} />
+          </button>
+        </div>
 
         {/* Avatar */}
         <div className={`w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0 text-sm font-bold ${getAvatarColor(headerId)}`}>
@@ -291,11 +299,10 @@ const ChatWindow = ({ conversation, currentUserId, currentUserRole, currentUserN
             <button
               onClick={() => setShowDealDropdown(p => !p)}
               disabled={isUpdatingDeal}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition ${
-                activeDealStatus
-                  ? `${activeDealStatus.color} border-transparent`
-                  : "bg-gray-100 text-gray-500 border-gray-200 hover:bg-gray-200"
-              } disabled:opacity-50`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition ${activeDealStatus
+                ? `${activeDealStatus.color} border-transparent`
+                : "bg-gray-100 text-gray-500 border-gray-200 hover:bg-gray-200"
+                } disabled:opacity-50`}
             >
               {isUpdatingDeal
                 ? <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
@@ -310,9 +317,8 @@ const ChatWindow = ({ conversation, currentUserId, currentUserRole, currentUserN
                   <button
                     key={s.value}
                     onClick={() => handleDealStatusChange(s.value)}
-                    className={`w-full text-left px-4 py-2.5 text-xs font-semibold hover:bg-gray-50 transition ${
-                      currentDealStatus === s.value ? s.color : "text-gray-700"
-                    }`}
+                    className={`w-full text-left px-4 py-2.5 text-xs font-semibold hover:bg-gray-50 transition ${currentDealStatus === s.value ? s.color : "text-gray-700"
+                      }`}
                   >
                     {s.label}
                   </button>
@@ -424,11 +430,10 @@ const ChatWindow = ({ conversation, currentUserId, currentUserRole, currentUserN
                     return (
                       <div key={msg._id} className={`flex w-full ${isMe ? "justify-end" : "justify-start"}`}>
                         <div
-                          className={`max-w-[70%] px-4 py-2.5 rounded-2xl text-sm ${
-                            isMe
-                              ? "bg-indigo-600 text-white rounded-br-sm"
-                              : "bg-white text-gray-800 border border-gray-100 rounded-bl-sm shadow-sm"
-                          }`}
+                          className={`max-w-[70%] px-4 py-2.5 rounded-2xl text-sm ${isMe
+                            ? "bg-indigo-600 text-white rounded-br-sm"
+                            : "bg-white text-gray-800 border border-gray-100 rounded-bl-sm shadow-sm"
+                            }`}
                           style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
                         >
                           <p className="leading-relaxed">{msg.text}</p>
@@ -473,7 +478,7 @@ const ChatWindow = ({ conversation, currentUserId, currentUserRole, currentUserN
         </div>
         <p className="text-xs text-gray-400 mt-1.5 text-center">Press Enter to send</p>
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -74,24 +74,11 @@ const AgentConversations = () => {
   }
 
   return (
-    <div className="pt-5 dm-sans">
-
-      <div className="pb-6">
-
-        {showChat && (
-          <button
-            onClick={() => setShowChat(false)}
-            className="md:hidden flex items-center gap-1.5 px-1 pb-2 font-medium text-sm text-gray-600 hover:text-indigo-600 transition"
-          >
-            <ArrowLeft size={13} /> Back
-          </button>
-        )}
-      </div>
+    <div className="py-4 md:pt-6 md:pb-0 lg:px-8 lg:pt-8 lg:pb-0 dm-sans">
 
       {/* Split View */}
-      <div
-        className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden"
-        style={{ height: "calc(100vh - 210px)", minHeight: "500px" }}
+      <div className="min-h-[500px] bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden 
+       h-[calc(100dvh-128px)] lg:h-[calc(100vh-192px)] md:h-[calc(100vh-152px)]"
       >
         <div className="flex h-full min-h-0">
 
@@ -139,6 +126,9 @@ const AgentConversations = () => {
                       }
                       `}
                   >
+
+
+
                     {/* Client Avatar */}
                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 text-sm font-bold ${getAvatarColor(conv.clientId)}`}>
                       {getInitials(conv.clientName)}
@@ -158,13 +148,13 @@ const AgentConversations = () => {
                       </div>
                       <p className="text-xs text-gray-500 truncate mt-0.5">{conv.propertyTitle}</p>
 
-                       {conv.unreadCount > 0 ? (
+                      {conv.unreadCount > 0 ? (
                         <div className="flex justify-between">
                           <p className="text-sm font-bold text-gray-700 truncate mt-0.5">{conv.lastMessage}</p>
-                       
-                            <span className="w-5 h-5 bg-indigo-600 border text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                              {conv.unreadCount}
-                            </span>          
+
+                          <span className="w-5 h-5 bg-indigo-600 border text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                            {conv.unreadCount}
+                          </span>
                         </div>
                       ) : (
                         <p className="text-xs text-gray-400 truncate mt-0.5">{conv.lastMessage}</p>
@@ -178,12 +168,13 @@ const AgentConversations = () => {
           </div>
 
           {/* Right — Chat Window  */}
-          <div className={`flex-1 flex flex-col min-w-0 ${showChat ? "flex" : "hidden md:flex"}`}>
+          <div className={`flex-1 flex flex-col min-w-0  ${showChat ? "flex" : "hidden md:flex"}`}>
             <ChatWindow
               conversation={selectedConversation}
               currentUserId={agentId}
               currentUserRole="agent"
               currentUserName={currentUser?.name}
+              onBack={() => setShowChat(false)}
             />
           </div>
         </div>

@@ -75,24 +75,12 @@ const UserConversations = () => {
   }
 
   return (
-    <div className=" pt-5 dm-sans">
-
-      <div className="pb-5">
-        {showChat && (
-          <button
-            onClick={() => setShowChat(false)}
-            className="md:hidden flex items-center gap-1.5 px-1 py-0.4 text-sm text-gray-600 hover:text-indigo-600 transition"
-          >
-            <ArrowLeft size={13} /> Back
-          </button>
-        )}
-      </div>
+     <div className="py-4 md:pt-6 md:pb-0 lg:px-8 lg:pt-8 lg:pb-0 dm-sans">
 
 
       {/* Split View */}
-      <div
-        className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden"
-        style={{ height: "calc(100vh - 210px)", minHeight: "500px" }}
+      <div className="min-h-[500px] bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden 
+       h-[calc(100dvh-128px)] lg:h-[calc(100vh-192px)] md:h-[calc(100vh-152px)]"
       >
         <div className="flex h-full">
 
@@ -187,6 +175,7 @@ const UserConversations = () => {
               currentUserId={clientId}
               currentUserRole="user"
               currentUserName={currentUser?.name}
+              onBack={() => setShowChat(false)}
             />
           </div>
         </div>
